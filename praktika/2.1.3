@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+
+public class Program {
+public static void Main() {
+Console.WriteLine("Введите три массияа через запятую в строчку отделяя кажды ймассив пробелом:");
+string input = Console.ReadLine();
+string[] inputs = input.Split(' ');
+
+foreach (string str in inputs) {
+int[] nums = Array.ConvertAll(str.Split(','), int.Parse);
+Console.WriteLine(ContainsDuplicate(nums));
+}
+}
+
+public static bool ContainsDuplicate(int[] nums) {
+HashSet<int> set = new HashSet<int>();
+foreach (int num in nums) {
+if (set.Contains(num)) {
+return true;
+}
+set.Add(num);
+}
+return false;
+}
+} 

@@ -1,0 +1,21 @@
+using System;
+
+public class Program
+{
+public static void Main()
+{
+string j = Console.ReadLine().Trim();
+string s = Console.ReadLine().Trim();
+
+int result = 0;
+foreach (char ch in s)
+{
+if (j.Contains(ch))
+{
+result++;
+}
+}
+
+Console.WriteLine(result);
+}
+}

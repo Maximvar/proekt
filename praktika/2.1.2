@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+
+public class Program {
+public static IList<IList<int» CombinationSum2(int[] candidates, int target) {
+IList<IList<int» result = new List<IList<int»();
+Array.Sort(candidates);
+Backtrack(result, new List<int>(), candidates, target, 0);
+return result;
+}
+
+private static void Backtrack(IList<IList<int» result, IList<int> tempList, int[] candidates, int remain, int start) {
+if (remain < 0) return;
+else if (remain == 0) result.Add(new List<int>(tempList));
+else {
+for (int i = start; i < candidates.Length; i++) {
+if (i > start && candidates[i] == candidates[i-1]) continue;
+tempList.Add(candidates[i]);
+Backtrack(result, tempList, candidates, remain-candidates[i], i+1);
+tempList.RemoveAt(tempList.Count-1);
+}
+}
+}
+
+public static void Main() {
+for (int i = 1; i <= 2; i++) {
+Console.Write($"Введите числа в список candidates в строчку через запятые {i}, s: ");
+int[] candidates = Array.ConvertAll(Console.ReadLine().Split(','), int.Parse);
+Console.Write($"Введите target {i}: ");
+int target = int.Parse(Console.ReadLine());
+IList<IList<int» combinations = CombinationSum2(candidates, target);
+Console.WriteLine($"\nAВсе уникальные комбинации {i}:");
+foreach (IList<int> combination in combinations) {
+Console.WriteLine(string.Join(", ", combination));
+}
+}
+}
+}
